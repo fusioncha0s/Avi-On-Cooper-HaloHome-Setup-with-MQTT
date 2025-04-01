@@ -85,7 +85,7 @@ python3 setup.py install
 nano settings.yaml
 ```
 
-Use the following configuration file.  Some things to note
+Use the following configuration file.  Some things to note...
 ## avion section
 - Update "YOUREMAIL@google.com" with your avion email address, no parenthises needed
 - Update "YOURPASSWORD" with your avion password, no parenthises needed
@@ -137,3 +137,39 @@ capabilities_overrides:
     max_kelvin: 6500
 ```
 
+Ensure the YAML formatting is correct.  If errors appear, fix indentation issues before proceeding
+```bash
+python -c "import yaml; print(yaml.safe_load(open('settings.yaml')))"
+```
+
+# Verify MQTT Broker Status
+Ensure you are running as root
+```bash
+sudo su
+```
+
+Then check if Mosquitto is running.  Within the "Active" line you should see it say "active (running)" in green font.
+```bash
+systemctl status mosquitto
+```
+
+If the mosquitto service is not running, start it
+```bash
+systemctl start mosquitto
+```
+
+Enable automatic startup of the mosquitto service on reboot/startup:
+```bash
+systemctl enable mosquitto
+```
+
+# Start AvionMQTT
+start the AvionMQTT service.  Some things to note...
+- "--log=DEBUG" - is not needed to start the AvionMQTT service, but it provides more detailed output of what devices connect and don't connect.  If you did not include this in your code, you would not get any output after execution.
+- The mqtt broker will first attempt to connect to the MQTT broker and mesh.  It will then attempt to scan and register your devices. If debug is included in your start command, you will get an output of each device in deatil showing PIDs, MAC Adddresses, Aliases, 
+
+```bash
+python -m avionmqtt -s settings.yaml --log=DEBUG
+```
+
+If you have a lot of devices/lights, it does take a minute or two to fully obtain the devices PIDs and associate them via the MQTT Broker and then to your Home Assistant.
