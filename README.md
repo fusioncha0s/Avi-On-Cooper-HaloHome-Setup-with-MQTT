@@ -94,8 +94,7 @@ Use the following configuration file.  Some things to note
 - **Ports:** No ports need to be defined unless you are using custom ports. If custom ports are used, uncomment the port section within the configuration and provide your port #.
 - **Username** Update your username to the specified username you created within your Home Assistant server and which you are planning to use for your MQTT broker in Home Assistant.  Assuming your username is all one word.
 - **Password** Update your password to the specified password you created within your Home Assistant server and which you are planning to use for your MQTT broker in Home Assistant.  **you do need to include parenthises around your password on this line**
-
-## devices, groups, and capabilities_overrides
+## devices, groups, and capabilities_overrides sections
 - I went with absolute basic with little testing into other arguments that can be added on these lines.  Devices and Groups section utilize brackets "[]" to ensure all devices and groups are added through the MQTT broker and into Home Assistant, I am not looking to limit devices with my setup, so this should obtain everything you have within your Avi-On app if you were to look at your app on your smartphone.  See the following code below the configuration file (Dimming and color temp ranges example) if you want to include dimming and color temp ranges within your configuration file.
 
 ```bash
