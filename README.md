@@ -1,7 +1,7 @@
 # Avi-On-Cooper-HaloHome-Setup-with-MQTT
 This documentation goes through setting up any Halo Home lights that are no longer (discontinued) via their halo home API, cooper lighting, or avi-on devices to have Home Assistant see them using MQTT broker.
 
-This is a low level walkthrough which is referencing Oyvindkinsey (https://github.com/oyvindkinsey/avionmqtt) for initial work done to get this to work, along with his additional acknowledgements mentioned.
+This is a low level walkthrough which is referencing Oyvindkinsey (https://github.com/oyvindkinsey/avionmqtt) for initial work done to get this to work, along with his additional acknowledgements mentioned.  Also Co-pilot!!!
 
 # Hardware/Software Requirements for using this setup
 - The AVI-ON MQTT broker can be installed on any hardware as long as you are able to run linux OS.  There is no real limitation to what you need to run this service as long as you are meeting the OS standards to run the OS. Ultimate solutions would be a rasberry pi with wifi/bluetooth capabilities will work perfect for this use case.
