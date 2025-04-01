@@ -95,7 +95,8 @@ Use the following configuration file.  Some things to note...
 - **Username** Update your username to the specified username you created within your Home Assistant server and which you are planning to use for your MQTT broker in Home Assistant.  Assuming your username is all one word.
 - **Password** Update your password to the specified password you created within your Home Assistant server and which you are planning to use for your MQTT broker in Home Assistant.  **you do need to include parenthises around your password on this line**
 ## devices, groups, and capabilities_overrides sections
-- I went with absolute basic with little testing into other arguments that can be added on these lines.  Devices and Groups section utilize brackets "[]" to ensure all devices and groups are added through the MQTT broker and into Home Assistant, I am not looking to limit devices with my setup, so this should obtain everything you have within your Avi-On app if you were to look at your app on your smartphone.  See the following code below the configuration file (Dimming and color temp ranges example) if you want to include dimming and color temp ranges within your configuration file.
+- I went with absolute basic with little testing into other arguments that can be added on these lines.  Devices and Groups section utilize brackets "[]" to ensure all devices and groups are added through the MQTT broker and into Home Assistant, I am not looking to limit devices with my setup, so this should obtain everything you have within your Avi-On app if you were to look at your app on your smartphone.
+- If you want to include certain dimming and color temp ranges within your configuration file. I did notice that turning on my lights through Home Assistant or the app on my phone turns the lights on to 100%, wheras I have these at a lower brightness.  To prevent them from turn on to max everytime you turn on the light/s, specify the brightness and also the color_temp within your configuration file by omitting the "#" for min and max brightness lines and also omitting the "#" from the min and max kelvin lines.  You also would need to remove the "{}" on the dimming line and the color_temp line. Adjust your values as needed, you can reference values through what the Avi-On app via your smartphone has available.
 
 ```bash
 avion:
@@ -123,24 +124,19 @@ single_device: true
 
 capabilities_overrides:
   dimming: {} # This tells AvionMQTT that the device supports dimming, but no additional parameters are set.
+    # min_brightness: 1
+    # max_brightness: 100
   color_temp: {} # This indicates that the device supports color temperature adjustments, but no override values are provided.
+    # min_kelvin: 2700
+    # max_kelvin: 6500
 ```
-
-Dimming and color temp ranges example
-```bash
-capabilities_overrides:
-  dimming:
-    min_brightness: 1
-    max_brightness: 100
-  color_temp:
-    min_kelvin: 2700
-    max_kelvin: 6500
-```
-
 Ensure the YAML formatting is correct.  If errors appear, fix indentation issues before proceeding
 ```bash
 python -c "import yaml; print(yaml.safe_load(open('settings.yaml')))"
 ```
+
+# Restart the AvionMQTT Service
+
 
 # Verify MQTT Broker Status
 Ensure you are running as root
@@ -165,11 +161,12 @@ systemctl enable mosquitto
 
 # Start AvionMQTT
 start the AvionMQTT service.  Some things to note...
+- If you have a lot of devices/lights, it does take a minute or two to before you can start turning on/off devices as it needs to fully obtain the devices PIDs and associate them via the MQTT Broker and then to your Home Assistant.
 - "--log=DEBUG" - is not needed to start the AvionMQTT service, but it provides more detailed output of what devices connect and don't connect.  If you did not include this in your code, you would not get any output after execution.
-- The mqtt broker will first attempt to connect to the MQTT broker and mesh.  It will then attempt to scan and register your devices. If debug is included in your start command, you will get an output of each device in deatil showing PIDs, MAC Adddresses, Aliases, 
+- The mqtt broker will first attempt to connect to the MQTT broker and mesh.  It will then attempt to scan and register your devices. If debug is included in your start command, you will get an output of each device in deatil including each device's information such as PIDs, MAC Adddresses, Aliases, etc.
+- Turning on or off a device through your Avi-On app on your smartphone or within Home Assistant will output in real-time those changes being made within your Ubuntu server via the debug outputs 
 
 ```bash
 python -m avionmqtt -s settings.yaml --log=DEBUG
 ```
 
-If you have a lot of devices/lights, it does take a minute or two to fully obtain the devices PIDs and associate them via the MQTT Broker and then to your Home Assistant.
