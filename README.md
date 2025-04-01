@@ -23,6 +23,16 @@ Referencing Oyvindkinsey (https://github.com/oyvindkinsey/avionmqtt) for initial
 - You have Ubuntu OS installed or similar OS installed on a server or device
 - You have access to SSH to run commands within your Ubuntu OS
 
+# Create a Mosquitto Borker user within Home Assistant
+The MQTT Broker automatically will use all users within Home Assistant for authentication. So you could use your own user account for this. This is not really secure. Best practice is to create a user account for mqtt which you can use on all your devices.
+    1. Within your Home Assistant frontend/home navigate to the Settings menu
+    2. Click on People > Users
+    3. Click on ADD USER in the lower right corner
+    4. Enter a name, in this example we will use mosquitto
+    5. enter the password and confirm it
+    6. Disable Administrator and local access only
+    7. Click CREATE
+
 # Switch to Root & Install System Dependencies
 Start by switching to the root user:
 ```bash
