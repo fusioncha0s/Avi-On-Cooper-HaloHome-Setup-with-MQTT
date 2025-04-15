@@ -17,7 +17,6 @@ This is a low level walkthrough which is referencing Oyvindkinsey (https://githu
 - I am also running my own local AI assistant in Home Assistant with wyoming satellites.  All i had to do was expose my lights to the AI assistant and I could tell jarvis to turn my lights down to 10, turn them on or off, etc. without having to specify automations beyond having them turn on and off at certain times each day.
 
 # Assumptions
-- You have Home Assistant HACS installed on Home Assistant
 - You have the Mosquitto Borker installed within your Home Assistant environment
 - You have Ubuntu OS installed or similar OS installed on a server or device
 - You have access to SSH to run commands within your Ubuntu OS
