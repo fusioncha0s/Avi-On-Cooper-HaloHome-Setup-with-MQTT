@@ -7,7 +7,6 @@ This is a low level walkthrough which is referencing Oyvindkinsey (https://githu
 - The AVI-ON MQTT broker can be installed on any hardware as long as you are able to run linux OS.  There is no real limitation to what you need to run this service as long as you are meeting the OS standards to run the OS. Ultimate solutions would be a rasberry pi with wifi/bluetooth capabilities will work perfect for this use case.
 - Bluetooth antenna device connected to your server to pickup your lights if you are not using a device such as a motherboard with an on-board bluetooth antenna.  Alternatively, you can easily purchase a USB bluetooth antenna for very cheap.
 - Have your lights setup/configured without your Avi-On app via your smartphone to ensure you have your lights/devices added into your avi-on account.
-- Home Assistant using HACS - This allows me to add the home assistant MQTT add-on needed to add devices into HA
 - Mosquitto Broker within Home Assistant - There is nothing to configure than to ensure the ports are using the default ports.  I am using the MQTT broker for other purposes than just Avi-On, so there is no issue with using the broker for different use cases.
 
 # Information about this guide and devices I am using for this guide
